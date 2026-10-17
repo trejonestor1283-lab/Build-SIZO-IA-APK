@@ -1,0 +1,6 @@
+{
+  "name": "SIZO IA",
+  "description": "Asistente inteligente SIZO IA con interfaz futurista oscura y naranja, procesamiento neuronal avanzado y generación de contenido.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
