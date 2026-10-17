@@ -25,7 +25,7 @@ object GeminiApiHelper {
         prompt: String,
         history: List<Pair<String, String>>, // role to text
         customApiKey: String? = null,
-        modelName: String = "gemini-3.8-flash"
+        modelName: String = "gemini-3.5-flash-lite"
     ): Result<String> = withContext(Dispatchers.IO) {
         val apiKey = when {
             !customApiKey.isNullOrBlank() -> customApiKey.trim()
@@ -84,12 +84,14 @@ object GeminiApiHelper {
             rootJson.put("generationConfig", config)
 
             val requestBody = rootJson.toString().toRequestBody(JSON_MEDIA_TYPE)
-            val url = "$BASE_URL$modelName:generateContent?key=$apiKey"
+val url = "$BASE_URL$modelName:generateContent"
 
-            val request = Request.Builder()
-                .url(url)
-                .post(requestBody)
-                .build()
+val request = Request.Builder()
+    .url(url)
+    .addHeader("x-goog-api-key", apiKey)
+    .addHeader("Content-Type", "application/json")
+    .post(requestBody)
+    .build()
 
             client.newCall(request).execute().use { response ->
                 val bodyString = response.body?.string().orEmpty()
