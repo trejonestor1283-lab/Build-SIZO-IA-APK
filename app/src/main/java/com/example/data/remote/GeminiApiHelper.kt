@@ -25,7 +25,7 @@ object GeminiApiHelper {
         prompt: String,
         history: List<Pair<String, String>>, // role to text
         customApiKey: String? = null,
-        modelName: String = "gemini-2.5-flash"
+        modelName: String = "gemini-3.8-flash"
     ): Result<String> = withContext(Dispatchers.IO) {
         val apiKey = when {
             !customApiKey.isNullOrBlank() -> customApiKey.trim()
