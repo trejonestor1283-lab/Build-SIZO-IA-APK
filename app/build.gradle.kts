@@ -17,7 +17,8 @@ android {
     targetSdk = 36
     versionCode = 1
     versionName = "1.0"
-    buildConfigField("String", "GEMINI_API_KEY", "\"\"")
+  val geminiApiKey = System.getenv("GEMINI_API_KEY") ?: ""
+buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
